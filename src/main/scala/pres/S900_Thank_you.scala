@@ -11,3 +11,5 @@ package pres
 object S900_Thank_you:
   val myself = "https://warski.org";
   val VirtusLab = "https://virtuslab.com";
+
+  val vss = "https://vss.virtuslab.com"
