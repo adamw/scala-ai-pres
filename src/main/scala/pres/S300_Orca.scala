@@ -13,6 +13,7 @@ class S300_Orca:
   val features = List(
     "resumable flows",
     "any language / ecosystem / framework",
-    "reusable flows, commitable configuration"
+    "reusable flows, commitable configuration",
+    "code with claude, review with codex",
+    "let agents write flows on-demand"
   )
-  /* */

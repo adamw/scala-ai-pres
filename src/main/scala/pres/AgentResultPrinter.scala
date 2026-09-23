@@ -1,3 +1,5 @@
+package pres
+
 import sttp.ai.core.agent.*
 
 /** Pretty-prints everything an [[AgentResult]] carries: the answer, the tool calls with their

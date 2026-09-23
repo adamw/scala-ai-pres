@@ -9,7 +9,7 @@ class S310_An_Orca_script:
 
     val session = codingAgent.session("implementer", seed = plan.brief)
 
-    val taskDeclines =
+    val taskFindings =
       for task <- plan.tasks yield stage(s"Task: ${task.title}"):
         session.run(task.description)
         reviewThenFix(
@@ -25,7 +25,7 @@ class S310_An_Orca_script:
         task = Task(Title("The whole planned change"), plan.brief),
         diff = ReviewDiff.WholeRun,
         maxIterations = 5,
-        priorDeclines = IgnoredIssues(taskDeclines.flatMap(_.issues))
+        priorOpenFindings = OpenFindings(taskFindings.flatMap(_.findings))
       )
 
     openPrIfGitHub(

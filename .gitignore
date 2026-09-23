@@ -5,6 +5,7 @@ target
 .devcontainer
 .vscode
 .bloop
+.scala-build
 work.md
 skill-demo
 

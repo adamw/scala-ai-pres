@@ -1,3 +1,5 @@
+package pres
+
 import sttp.ai.core.agent.*
 import sttp.ai.openai.OpenAI
 import sttp.ai.openai.agent.OpenAIAgent
@@ -42,7 +44,38 @@ import sttp.tapir.Schema.annotations.description
       .tools(brewCoffeeTool, playMusicTool)
       .build
 
-    val result = agent.run("Make coffee and play 500 miles")(backend)
+    val result: AgentResult[Either[AgentFailure, String]] =
+      agent.run("Make coffee and play 500 miles")(backend)
+
+    // case class AgentResult[T](
+    //     finalAnswer: T,
+    //     iterations: Int,
+    //     toolCalls: Seq[ToolCallRecord],
+    //     finishReason: FinishReason,
+    //     usage: TokenUsage,
+    //     llmCalls: Seq[LlmCallUsage],
+    //     history: ConversationHistory)
+    //
+    // case class ToolCallRecord(id: String, toolName: String, input: String, output: String,
+    //     iteration: Int)
+    //
+    // enum FinishReason:
+    //   case NaturalStop, MaxIterations, TokenLimit, BudgetExceeded
+    //   case Error(message: String)
+    //   case Custom(reason: String)
+    //
+    // case class TokenUsage(inputTokens: Tokens, outputTokens: Tokens, cachedInputTokens: Tokens,
+    //     reasoningTokens: Tokens, cacheWriteInputTokens: Tokens)
+    //
+    // case class LlmCallUsage(model: Option[String], usage: TokenUsage)
+    //
+    // case class ConversationHistory(entries: Seq[ConversationEntry])
+    //
+    // enum ConversationEntry:
+    //   case UserPrompt(content: String)
+    //   case AssistantResponse(content: String, toolCalls: Seq[ToolCall])
+    //   case ToolResult(toolCallId: String, toolName: String, result: String)
+    //   case IterationMarker(currentIteration: Int, maxIterations: Int)
 
     AgentResultPrinter(result)
   finally backend.close()
