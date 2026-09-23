@@ -8,9 +8,10 @@ object S100_Metals_MCP:
     "import-build",
     "compile-full",
     "compile-module",
-    "globa-search",
+    "glob-search",
     "typed-glob-search",
     "find-dep"
   )
 
-  // Alternative: sbt --client
+  // claude mcp add --transport http metals "http://localhost:33131/mcp"
+  // claude mcp remove metals
