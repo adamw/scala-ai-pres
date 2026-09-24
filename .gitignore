@@ -8,6 +8,7 @@ target
 .scala-build
 work.md
 skill-demo
+metals.sbt
 
 # Sandcat
 # /Sandcat
