@@ -1,6 +1,10 @@
 package pres
 
 class S310_An_Orca_script:
+  // > using scala 3.9.0
+  // > using dep "org.virtuslab::orca:0.2.0"
+  // > using jvm 21
+
   import orca.{*, given}
 
   flow(OrcaArgs(Array.empty[String])):

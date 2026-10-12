@@ -3,7 +3,11 @@ package pres
 object S320_Orca_demo:
   // curl -fsSL https://raw.githubusercontent.com/VirtusLab/orca/master/install.sh | bash
 
-  // simple.sc:
+  // quick.sc:
+  // > using scala 3.9.0
+  // > using dep "org.virtuslab::orca:0.2.0"
+  // > using jvm 21
+
   import orca.{*, given}
 
   flow(OrcaArgs(Array.empty[String])):
