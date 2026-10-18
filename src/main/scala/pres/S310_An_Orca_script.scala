@@ -11,10 +11,9 @@ class S310_An_Orca_script:
     val plan = stage("Plan"):
       Plan.autonomous.from(userPrompt, planningAgent).value
 
-    val session = codingAgent.session("implementer", seed = plan.brief)
-
-    val taskFindings =
+    val taskOpenFindings =
       for task <- plan.tasks yield stage(s"Task: ${task.title}"):
+        val session = codingAgent.session("implementer", seed = plan.brief)
         session.run(task.description)
         reviewThenFix(
           coderSession = session,
@@ -22,17 +21,19 @@ class S310_An_Orca_script:
           task = task
         )
 
+    // Nothing reviews after this loop, so it gets more fix turns.
     val openFindings = stage("Final review"):
+      val finalFixer = codingAgent.session("final-fixer", seed = plan.brief)
       reviewAndFixLoop(
-        coderSession = session,
+        coderSession = finalFixer,
         reviewers = allReviewers(reviewAgent),
         task = Task(Title("The whole planned change"), plan.brief),
         diff = ReviewDiff.WholeRun,
-        maxIterations = 5,
-        priorOpenFindings = OpenFindings(taskFindings.flatMap(_.findings))
+        maxFixTurns = 5,
+        priorOpenFindings = taskOpenFindings.flatMap(_.findings)
       )
 
     openPrIfGitHub(
-      summarisingAgent = codingAgent.cheap,
+      summarisingAgent = codingAgent,
       openFindings = openFindings
     )

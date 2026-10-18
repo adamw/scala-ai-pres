@@ -18,7 +18,7 @@ object S320_Orca_demo:
         coderSession = session,
         reviewers = allReviewers(reviewAgent),
         task = Task(Title(userPrompt), ""),
-        maxIterations = 3
+        maxFixTurns = 3
       )
 
     openPrIfGitHub(
