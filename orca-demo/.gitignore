@@ -1,1 +1,15 @@
-b3
+.sandcat
+target
+.bsp
+.metals
+.devcontainer
+.vscode
+.bloop
+.scala-build
+work.md
+skill-demo
+orca-demo
+metals.sbt
+
+# Sandcat
+# /Sandcat
