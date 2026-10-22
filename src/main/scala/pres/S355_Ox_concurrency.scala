@@ -5,7 +5,7 @@ import scala.concurrent.duration.*
 import ox.scheduling.*
 import ox.resilience.retry
 
-object S350_Ox_structured_concurrency:
+object S355_Ox_concurrency:
   case class Quote(vendor: String, priceCents: Int)
 
   def ask(vendor: String, priceCents: Int, latency: FiniteDuration): Quote =
@@ -21,4 +21,3 @@ object S350_Ox_structured_concurrency:
       timeoutOption(1.second)(ask("globex", 1100, 200.millis))
     )
     (List(cached, acme) ++ globex.toList).minBy(_.priceCents)
-end S350_Ox_structured_concurrency

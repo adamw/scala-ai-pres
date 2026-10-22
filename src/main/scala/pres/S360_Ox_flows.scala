@@ -21,4 +21,3 @@ object S360_Ox_flows:
       .filter(_.tempC >= 20)
       .take(6)
       .runToList()
-end S360_Ox_flows
