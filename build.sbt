@@ -1,4 +1,6 @@
-ThisBuild / scalaVersion := "3.9.0"
+resolvers += "scala-nightlies" at "https://repo.scala-lang.org/artifactory/maven-nightlies/"
+
+ThisBuild / scalaVersion := "3.10.1-RC1-bin-20260929-af35eef-NIGHTLY"
 
 libraryDependencies ++= Seq(
   "com.softwaremill.sttp.ai" %% "openai" % "0.11.0",
